@@ -14,14 +14,13 @@ public class Bag {
 	}
 	
 	private LinkedList<String> substring(String word) {
-		
-		if(word.length() >= 2) {
-			if(!list.contains(word)) {
-				list.add(word);
-			} return list;	
+		if(!list.contains(word)) {
+			list.add(word);
 		}
 		
-		list.add(word);
+		if((word.length() < 3)) {
+			 return list;	
+		}
 		
 		for (int i = 0; i < word.length(); i++) {
 			String shorter = word.substring(0, i) + word.substring(i + 1);
