@@ -1,0 +1,45 @@
+import java.util.LinkedList;
+import java.util.Random;
+
+/**
+ * Main runner class of the Scrabble Cheater app.
+ * Sets up a dictionary of allowed words in Scrabble.
+ * Takes scrambled inputs and finds viable words of it.
+ * 
+ * @author	n-c0de-r
+ * @author	jonasblome
+ * @author	GitYusuf
+ * @version	17.07.2021
+ */
+public class ScrabbleCheater {
+
+	public static void main(String[] args) {
+		ScrabbleCheater cheater = new ScrabbleCheater();
+		LinkedList<Dictionary> dictionaries = new LinkedList<>();
+		
+		for(int i = 0; i < 8; i++) {
+			dictionaries.add(i,new Dictionary(i));
+		}
+		
+		Bag bag = new Bag(cheater.sevenLetters());
+		
+		LinkedList<String> check = bag.getList();
+		
+		LinkedList<String> results = new LinkedList<>();
+		
+		for(String word : check) {
+			results.add(dictionaries.get(word.length()).checkPermutations(word));
+		}
+		System.out.println(results);
+		
+	}
+	
+	private String sevenLetters() {
+		Random r = new Random();
+		String word = "";
+		for (int i = 0; i < 7; i++) {
+			word = word + (char)(r.nextInt(26) + 'a');
+		}
+		return word;
+	}
+}
