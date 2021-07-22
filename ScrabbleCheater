@@ -20,18 +20,21 @@ public class ScrabbleCheater {
 		for(int i = 0; i < 8; i++) {
 			dictionaries.add(i,new Dictionary(i));
 		}
-		
-		Bag bag = new Bag(cheater.sevenLetters());
+		String randomLetters = cheater.sevenLetters();
+		Bag bag = new Bag(randomLetters);
 		
 		LinkedList<String> check = bag.getList();
 		
 		LinkedList<String> results = new LinkedList<>();
 		
 		for(String word : check) {
-			results.add(dictionaries.get(word.length()).checkPermutations(word));
+			String dictionaryWord = dictionaries.get(word.length()).checkPermutations(word);
+			if (dictionaryWord != null) {
+				results.add(dictionaryWord);
+			}
 		}
-		System.out.println(results);
-		
+		System.out.println(randomLetters);
+		System.out.println(results);	
 	}
 	
 	private String sevenLetters() {
